@@ -130,16 +130,18 @@ public class M_SPEED {
 		return Calc; 
 	} //end CalcProb
 	
-	public float getHighProbabilityEvent(String window) {			
-		for(char c : tree.root.children.keySet())
-			CalcProb(window, c);
-			if (tree.root.children > Calc) {
-				Calc = window.charAt(counter);
+	public char getHighProbabilityEvent(String window) {	
+		float maxProb = -1;
+		char maxEvent = ' ';
+		for(char event : tree.root.children.keySet()) {
+			float c_prob = CalcProb(window, event);
+			if(c_prob > maxProb) {
+				maxProb = c_prob;
+				maxEvent = event;
 			}
 		}
-		System.out.println ("max value is:"+ Calc);
-		return Calc;
-		
+		System.out.println (maxEvent + " max value is:"+ maxProb);
+		return maxEvent;
 	}
 
 	public void Read(String Episode, int i){
